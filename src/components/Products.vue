@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>SHOPPING STORE</h1>
         <Navbar 
         :cart="cart" 
         :cartQty="cartQty" 
@@ -11,7 +10,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Navbar from "./Navbar.vue";
 import ProductList from "./ProductList.vue";
 

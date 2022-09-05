@@ -1,43 +1,31 @@
 <template>
-    <nav class="navbar navbar-light fixed-top">
-        <div class="navbar-text ml-auto d-flex">
-            <button class="btn btn-sm btn-outline-success" @click="$parent.$emit('toggle')">
-                $ CART
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand brand" href="#">SHOPPING STORE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a href="#">
+            <button class="btn btn-outline-success my-2 my-sm-0" @click="$parent.$emit('toggle')"> $ CART
+            <span class="badge rounded-pill badge-notification bg-danger">{{ cartQty }}</span>
             </button>
-            <div class="dropdown ml-2" v-if="cart.length>0">
-                <button
-                    class="btn btn-success btn-sm dropdown-toggle"
-                    id="cartDropdown"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                >
-                    <span class="badge badge-pill badge-light mr-3">{{cartQty}}</span>
-                    <font-awesome-icon icon="shopping-cart" class="mr-3"></font-awesome-icon>
-                    <price :value="Number(cartTotal)"></price>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="cartDropdown">
-                    <div v-for="(item, index) in cart" :key="index">
-                        <div class="dropdown-item-text text-nowrap text-right">
-                            <span
-                                class="badge badge-pill badge-warning align-text-top mr-1"
-                            >{{item.qty}}</span>
-                            {{item.product.name}}
-                            <b>
-                                <price :value="Number(item.qty * item.product.price)"></price>
-                            </b>
-                            <a
-                                href="#"
-                                @click.stop="$parent.$emit('delete',index)"
-                                class="badge badge-danger text-white"
-                            >-</a>
-                        </div>
-                    </div>
-                    <router-link class="btn btn-sm btn-outline-info text-dark float-right mr-4 mt-2" to="checkout">Checkout</router-link>
-                </div>
-            </div>
-        </div>
-    </nav>
+        </a>
+      </li>
+    </ul>
+
+    <router-link to="/wishlist">
+        <button class="btn btn-outline-warning my-1 my-sm-1 wishlist">Wishlist</button>
+    </router-link>
+
+    <router-link to="/">
+        <button class="btn btn-outline-danger my-1 my-sm-1 logout">Logout</button>
+    </router-link>
+
+  </div>
+</nav>
 </template>
 
 <script lang="ts">
@@ -50,3 +38,28 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.brand {
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 52rem;
+}
+
+a {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.wishlist, .logout {
+    margin-right: 10px;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+</style>
